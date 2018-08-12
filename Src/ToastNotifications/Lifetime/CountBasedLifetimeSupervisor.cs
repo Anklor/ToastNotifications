@@ -61,7 +61,6 @@ namespace ToastNotifications.Lifetime
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         private bool _disposed;
