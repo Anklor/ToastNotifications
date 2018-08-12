@@ -8,7 +8,7 @@ namespace BasicUsageExample
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public MainWindow()
         {
@@ -18,7 +18,7 @@ namespace BasicUsageExample
             Unloaded += OnUnload;
         }
 
-        private int _count = 0;
+        private int _count;
         private readonly ToastViewModel _vm;
 
         private void OnUnload(object sender, RoutedEventArgs e)
@@ -53,13 +53,13 @@ namespace BasicUsageExample
             {
                 CloseClickAction = CloseAction,
                 Tag = $"[This is Tag Value ({++_count})]",
-                FreezeOnMouseEnter = cbFreezeOnMouseEnter.IsChecked.GetValueOrDefault(),
-                UnfreezeOnMouseLeave = cbUnfreezeOnMouseLeave.IsChecked.GetValueOrDefault(),
-                ShowCloseButton = cbShowCloseButton.IsChecked.GetValueOrDefault()
+                FreezeOnMouseEnter = CbFreezeOnMouseEnter.IsChecked.GetValueOrDefault(),
+                UnfreezeOnMouseLeave = CbUnfreezeOnMouseLeave.IsChecked.GetValueOrDefault(),
+                ShowCloseButton = CbShowCloseButton.IsChecked.GetValueOrDefault()
             };
             _lastMessage = $"{_count} {name}";
             action(_lastMessage, opts);
-            bClearLast.IsEnabled = true;
+            BClearLast.IsEnabled = true;
         }
 
         private void CloseAction(INotification obj)
@@ -77,7 +77,7 @@ namespace BasicUsageExample
         private void Button_ClearLastClick(object sender, RoutedEventArgs e)
         {
             _vm.ClearMessages(_lastMessage);
-            bClearLast.IsEnabled = false;
+            BClearLast.IsEnabled = false;
         }
 
         private void Button_SameContentClick(object sender, RoutedEventArgs e)
@@ -88,12 +88,12 @@ namespace BasicUsageExample
             {
                 CloseClickAction = CloseAction,
                 Tag = "[This is Tag Value]",
-                FreezeOnMouseEnter = cbFreezeOnMouseEnter.IsChecked.GetValueOrDefault(),
-                ShowCloseButton = cbShowCloseButton.IsChecked.GetValueOrDefault()
+                FreezeOnMouseEnter = CbFreezeOnMouseEnter.IsChecked.GetValueOrDefault(),
+                ShowCloseButton = CbShowCloseButton.IsChecked.GetValueOrDefault()
             };
             _vm.ShowSuccess(sameContent, opts);
             _lastMessage = sameContent;
-            bClearLast.IsEnabled = true;
+            BClearLast.IsEnabled = true;
         }
     }
 }

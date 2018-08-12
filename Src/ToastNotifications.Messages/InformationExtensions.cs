@@ -7,12 +7,12 @@ namespace ToastNotifications.Messages
     {
         public static void ShowInformation(this Notifier notifier, string message)
         {
-            notifier.Notify<InformationMessage>(() => new InformationMessage(message));
+            notifier.Notify(() => new InformationMessage(message));
         }
 
         public static void ShowInformation(this Notifier notifier, string message, MessageConfiguration configuration)
         {
-            notifier.Notify<InformationMessage>(() => new InformationMessage(message, configuration));
+            notifier.Notify(() => new InformationMessage(message, configuration));
         }
     }
 }

@@ -8,12 +8,12 @@ namespace ToastNotifications.Utilities
         [Flags]
         public enum ExtendedWindowStyles
         {
-            WS_EX_TOOLWINDOW = 0x00000080,
+            WsExToolwindow = 0x00000080,
         }
 
         public enum GetWindowLongFields
         {
-            GWL_EXSTYLE = (-20),
+            GwlExstyle = (-20),
         }
 
         [DllImport("user32.dll")]
@@ -24,8 +24,8 @@ namespace ToastNotifications.Utilities
 
         public static IntPtr SetWindowLong(IntPtr hWnd, int nIndex, IntPtr dwNewLong)
         {
-            int error = 0;
-            IntPtr result = IntPtr.Zero;
+            int error;
+            IntPtr result;
             // Win32 SetWindowLong doesn't clear error on success
             SetLastError(0);
 

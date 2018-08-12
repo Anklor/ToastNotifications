@@ -7,12 +7,12 @@ namespace ToastNotifications.Messages
     {
         public static void ShowSuccess(this Notifier notifier, string message)
         {
-            notifier.Notify<SuccessMessage>(() => new SuccessMessage(message));
+            notifier.Notify(() => new SuccessMessage(message));
         }
 
         public static void ShowSuccess(this Notifier notifier, string message, MessageConfiguration configuration)
         {
-            notifier.Notify<SuccessMessage>(() => new SuccessMessage(message, configuration));
+            notifier.Notify(() => new SuccessMessage(message, configuration));
         }
     }
 }

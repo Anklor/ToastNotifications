@@ -6,7 +6,7 @@ namespace CustomNotificationsExample.MahAppsNotification
     {
         public static void ShowMahAppsNotification(this Notifier notifier, string title, string message)
         {
-            notifier.Notify<MahAppsNotification>(() => new MahAppsNotification(title, message));
+            notifier.Notify(() => new MahAppsNotification(title, message));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace ToastNotifications.Display
     /// <summary>
     /// Interaction logic for NotificationsWindow.xaml
     /// </summary>
-    public partial class NotificationsWindow : Window
+    public partial class NotificationsWindow
     {
         private IKeyboardEventHandler _keyboardEventHandler;
 
@@ -57,7 +57,7 @@ namespace ToastNotifications.Display
 
         private void RecomputeLayout()
         {
-            Dispatcher.Invoke(((Action)(() => {; })), DispatcherPriority.Render);
+            Dispatcher.Invoke((Action)(() => { }), DispatcherPriority.Render);
         }
 
         public void SetEjectDirection(EjectDirection ejectDirection)
@@ -90,10 +90,10 @@ namespace ToastNotifications.Display
         {
             WindowInteropHelper wndHelper = new WindowInteropHelper(this);
 
-            int exStyle = (int)WinApi.GetWindowLong(wndHelper.Handle, (int)WinApi.GetWindowLongFields.GWL_EXSTYLE);
+            int exStyle = (int)WinApi.GetWindowLong(wndHelper.Handle, (int)WinApi.GetWindowLongFields.GwlExstyle);
 
-            exStyle |= (int)WinApi.ExtendedWindowStyles.WS_EX_TOOLWINDOW;
-            WinApi.SetWindowLong(wndHelper.Handle, (int)WinApi.GetWindowLongFields.GWL_EXSTYLE, (IntPtr)exStyle);
+            exStyle |= (int)WinApi.ExtendedWindowStyles.WsExToolwindow;
+            WinApi.SetWindowLong(wndHelper.Handle, (int)WinApi.GetWindowLongFields.GwlExstyle, (IntPtr)exStyle);
         }
 
         private void NotificationsWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -108,7 +108,7 @@ namespace ToastNotifications.Display
 
         public new void Close()
         {
-            this.Closing -= NotificationsWindow_Closing;
+            Closing -= NotificationsWindow_Closing;
             base.Close();
         }
     }

@@ -137,11 +137,11 @@ namespace ConfigurationExample
         private Corner _corner;
         public Corner Corner
         {
-            get { return _corner; }
+            get => _corner;
             set
             {
                 _corner = value;
-                OnPropertyChanged("Corner");
+                OnPropertyChanged(nameof(Corner));
                 ChangePosition(_corner, _positionProviderType, _lifetime);
             }
         }
@@ -149,11 +149,11 @@ namespace ConfigurationExample
         private PositionProviderType _positionProviderType;
         public PositionProviderType PositionProviderType
         {
-            get { return _positionProviderType; }
+            get => _positionProviderType;
             set
             {
                 _positionProviderType = value;
-                OnPropertyChanged("PositionProviderType");
+                OnPropertyChanged(nameof(PositionProviderType));
                 ChangePosition(_corner, _positionProviderType, _lifetime);
             }
         }
@@ -162,10 +162,7 @@ namespace ConfigurationExample
 
         public NotificationLifetimeType Lifetime
         {
-            get
-            {
-                return _lifetime;
-            }
+            get => _lifetime;
             set
             {
                 _lifetime = value;
@@ -177,7 +174,7 @@ namespace ConfigurationExample
         private bool _freezeOnMouseEnter;
         public bool FreezeOnMouseEnter
         {
-            get { return _freezeOnMouseEnter; }
+            get => _freezeOnMouseEnter;
             set
             {
                 _freezeOnMouseEnter = value;
@@ -188,7 +185,7 @@ namespace ConfigurationExample
         private bool _unFreezeOnMouseEnter;
         public bool UnFreezeOnMouseEnter
         {
-            get { return _unFreezeOnMouseEnter; }
+            get => _unFreezeOnMouseEnter;
             set
             {
                 _unFreezeOnMouseEnter = value;
@@ -199,7 +196,7 @@ namespace ConfigurationExample
         private bool _showCloseButton;
         public bool ShowCloseButton
         {
-            get { return _showCloseButton; }
+            get => _showCloseButton;
             set
             {
                 _showCloseButton = value;

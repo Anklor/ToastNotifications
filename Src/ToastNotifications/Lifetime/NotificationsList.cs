@@ -7,7 +7,7 @@ namespace ToastNotifications.Lifetime
 {
     public class NotificationsList : ConcurrentDictionary<int, NotificationMetaData>
     {
-        private int _id = 0;
+        private int _id;
 
         public NotificationMetaData Add(INotification notification)
         {

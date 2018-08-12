@@ -1,11 +1,9 @@
-﻿using ToastNotifications.Core;
-
-namespace CustomNotificationsExample.MahAppsNotification
+﻿namespace CustomNotificationsExample.MahAppsNotification
 {
     /// <summary>
     /// Interaction logic for MahAppsDisplayPart.xaml
     /// </summary>
-    public partial class MahAppsDisplayPart : NotificationDisplayPart
+    public partial class MahAppsDisplayPart
     {
         public MahAppsDisplayPart(MahAppsNotification notification)
         {

@@ -1,8 +1,5 @@
-﻿using CustomNotificationsExample.Utilities;
-using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
 using ToastNotifications.Core;
 
 namespace CustomNotificationsExample.CustomInput
@@ -13,7 +10,7 @@ namespace CustomNotificationsExample.CustomInput
 
         public CustomInputNotification(string message, string initialText)
         {
-            Message = message;
+            MessageText = message;
             InputText = initialText;
         }
 
@@ -23,12 +20,9 @@ namespace CustomNotificationsExample.CustomInput
 
         private string _message;
 
-        public string Message
+        public string MessageText
         {
-            get
-            {
-                return _message;
-            }
+            get => _message;
             set
             {
                 _message = value;
@@ -40,10 +34,7 @@ namespace CustomNotificationsExample.CustomInput
 
         public string InputText
         {
-            get
-            {
-                return _inputText;
-            }
+            get => _inputText;
             set
             {
                 _inputText = value;
@@ -56,8 +47,7 @@ namespace CustomNotificationsExample.CustomInput
         protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             var handler = PropertyChanged;
-            if (handler != null)
-                handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

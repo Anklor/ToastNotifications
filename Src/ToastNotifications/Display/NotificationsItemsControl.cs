@@ -1,9 +1,6 @@
-﻿using System;
-using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using ToastNotifications.Core;
 
 namespace ToastNotifications.Display
@@ -14,8 +11,8 @@ namespace ToastNotifications.Display
 
         public bool ShouldReverseItems
         {
-            get { return (bool)GetValue(ShouldReverseItemsProperty); }
-            set { SetValue(ShouldReverseItemsProperty, value); }
+            get => (bool)GetValue(ShouldReverseItemsProperty);
+            set => SetValue(ShouldReverseItemsProperty, value);
         }
 
         public NotificationsItemsControl()
@@ -30,9 +27,7 @@ namespace ToastNotifications.Display
 
         private static void ShouldReverseItemsPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var itemsControl = d as NotificationsItemsControl;
-
-            if (itemsControl == null)
+            if (!(d is NotificationsItemsControl itemsControl))
                 return;
 
             bool shouldReverse = (bool)e.NewValue;
@@ -49,18 +44,12 @@ namespace ToastNotifications.Display
             int scaleY = reverse ? -1 : 1;
 
             itemPanel.LayoutTransform = new ScaleTransform(1, scaleY);
-            Style itemContainerStyle;
-            if (itemsControl.ItemContainerStyle == null)
+            var itemContainerStyle = itemsControl.ItemContainerStyle == null ? new Style() : CopyStyle(itemsControl.ItemContainerStyle);
+            Setter setter = new Setter
             {
-                itemContainerStyle = new Style();
-            }
-            else
-            {
-                itemContainerStyle = CopyStyle(itemsControl.ItemContainerStyle);
-            }
-            Setter setter = new Setter();
-            setter.Property = ItemsControl.LayoutTransformProperty;
-            setter.Value = new ScaleTransform(1, scaleY);
+                Property = LayoutTransformProperty,
+                Value = new ScaleTransform(1, scaleY)
+            };
             itemContainerStyle.Setters.Add(setter);
             itemsControl.ItemContainerStyle = itemContainerStyle;
         }
@@ -95,11 +84,7 @@ namespace ToastNotifications.Display
             for (int i = 0; i < numVisuals; i++)
             {
                 Visual v = (Visual)VisualTreeHelper.GetChild(parent, i);
-                child = v as T;
-                if (child == null)
-                {
-                    child = GetVisualChild<T>(v);
-                }
+                child = v as T ?? GetVisualChild<T>(v);
                 if (child != null)
                 {
                     break;

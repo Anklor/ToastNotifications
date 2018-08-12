@@ -7,12 +7,12 @@ namespace ToastNotifications.Messages
     {
         public static void ShowError(this Notifier notifier, string message)
         {
-            notifier.Notify<ErrorMessage>(() => new ErrorMessage(message));
+            notifier.Notify(() => new ErrorMessage(message));
         }
 
         public static void ShowError(this Notifier notifier, string message, MessageConfiguration configuration)
         {
-            notifier.Notify<ErrorMessage>(() => new ErrorMessage(message, configuration));
+            notifier.Notify(() => new ErrorMessage(message, configuration));
         }
     }
 }

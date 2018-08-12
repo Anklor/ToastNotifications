@@ -10,7 +10,7 @@ namespace ToastNotifications
 {
     public class Notifier : IDisposable
     {
-        private readonly object _syncRoot = new object();
+        private readonly object _syncRoot;
 
         private readonly Action<NotifierConfiguration> _configureAction;
         private NotifierConfiguration _configuration;
@@ -20,9 +20,10 @@ namespace ToastNotifications
         public Notifier(Action<NotifierConfiguration> configureAction)
         {
             _configureAction = configureAction;
+            _syncRoot = new object();
         }
 
-        public void Notify<T>(Func<INotification> createNotificationFunc)
+        public void Notify(Func<INotification> createNotificationFunc)
         {
             Configure();
             _lifetimeSupervisor.PushNotification(createNotificationFunc());
@@ -75,10 +76,10 @@ namespace ToastNotifications
 
         public void ClearMessages(string msg)
         {
-            this._lifetimeSupervisor?.ClearMessages(msg);
+            _lifetimeSupervisor?.ClearMessages(msg);
         }
 
-        private bool _disposed = false;
+        private bool _disposed;
 
         public object SyncRoot => _syncRoot;
 

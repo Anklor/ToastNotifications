@@ -11,20 +11,15 @@ namespace CustomNotificationsExample.CustomCommand
     {
         private CustomCommandDisplayPart _displayPart;
 
-        private Action<CustomCommandNotification> _confirmAction;
-        private Action<CustomCommandNotification> _declineAction;
-
         public ICommand ConfirmCommand { get; set; }
         public ICommand DeclineCommand { get; set; }
 
         public CustomCommandNotification(string message, Action<CustomCommandNotification> confirmAction, Action<CustomCommandNotification> declineAction)
         {
-            Message = message;
-            _confirmAction = confirmAction;
-            _declineAction = declineAction;
+            MessageText = message;
 
-            ConfirmCommand = new RelayCommand(x => _confirmAction(this));
-            DeclineCommand = new RelayCommand(x => _declineAction(this));
+            ConfirmCommand = new RelayCommand(x => confirmAction(this));
+            DeclineCommand = new RelayCommand(x => declineAction(this));
         }
 
         public override NotificationDisplayPart DisplayPart => _displayPart ?? (_displayPart = new CustomCommandDisplayPart(this));
@@ -33,12 +28,9 @@ namespace CustomNotificationsExample.CustomCommand
 
         private string _message;
 
-        public string Message
+        public string MessageText
         {
-            get
-            {
-                return _message;
-            }
+            get => _message;
             set
             {
                 _message = value;
@@ -51,8 +43,7 @@ namespace CustomNotificationsExample.CustomCommand
         protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             var handler = PropertyChanged;
-            if (handler != null)
-                handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

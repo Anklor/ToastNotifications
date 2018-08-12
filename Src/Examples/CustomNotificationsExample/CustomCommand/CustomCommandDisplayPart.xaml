@@ -14,7 +14,7 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="{Binding Message}" FontWeight="Bold" Foreground="Black" />
+            <TextBlock Grid.Row="0" Text="{Binding MessageText}" FontWeight="Bold" Foreground="Black" />
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                 <Button Content="Confirm" Width="60" Margin="2" IsDefault="True" Command="{Binding ConfirmCommand}"  />
                 <Button Content="Decline" Width="60" Margin="2" IsCancel="True" Command="{Binding DeclineCommand}"  />

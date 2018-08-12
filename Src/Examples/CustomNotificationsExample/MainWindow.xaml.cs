@@ -1,8 +1,8 @@
 ﻿using CustomNotificationsExample.CustomMessage;
 using CustomNotificationsExample.MahAppsNotification;
-using MahApps.Metro.Controls;
 using System;
 using System.Windows;
+using CustomNotificationsExample.CustomCommand;
 using CustomNotificationsExample.CustomInput;
 using ToastNotifications;
 using ToastNotifications.Events;
@@ -14,7 +14,7 @@ namespace CustomNotificationsExample
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class MainWindow
     {
         private readonly Notifier _notifier;
 

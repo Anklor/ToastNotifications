@@ -1,12 +1,11 @@
 ﻿using System.Windows;
-using ToastNotifications.Core;
 
 namespace ToastNotifications.Messages.Success
 {
     /// <summary>
     /// Interaction logic for SuccessDisplayPart.xaml
     /// </summary>
-    public partial class SuccessDisplayPart : NotificationDisplayPart
+    public partial class SuccessDisplayPart
     {
         private readonly SuccessMessage _viewModel;
 
@@ -20,7 +19,7 @@ namespace ToastNotifications.Messages.Success
 
         public override string GetMessage()
         {
-            return this._viewModel.MessageText;
+            return _viewModel.MessageText;
         }
 
         private void OnClose(object sender, RoutedEventArgs e)

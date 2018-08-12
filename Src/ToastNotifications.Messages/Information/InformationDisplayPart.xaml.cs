@@ -1,12 +1,11 @@
 ﻿using System.Windows;
-using ToastNotifications.Core;
 
 namespace ToastNotifications.Messages.Information
 {
     /// <summary>
     /// Interaction logic for InformationDisplayPart.xaml
     /// </summary>
-    public partial class InformationDisplayPart : NotificationDisplayPart
+    public partial class InformationDisplayPart
     {
         private readonly InformationMessage _viewModel;
 

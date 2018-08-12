@@ -1,12 +1,11 @@
 ﻿using System.Windows;
-using ToastNotifications.Core;
 
 namespace ToastNotifications.Messages.Warning
 {
     /// <summary>
     /// Interaction logic for WarningDisplayPart.xaml
     /// </summary>
-    public partial class WarningDisplayPart : NotificationDisplayPart
+    public partial class WarningDisplayPart
     {
         private readonly WarningMessage _viewModel;
 

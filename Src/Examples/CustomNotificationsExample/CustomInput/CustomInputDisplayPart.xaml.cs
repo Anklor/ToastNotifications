@@ -1,11 +1,9 @@
-﻿using ToastNotifications.Core;
-
-namespace CustomNotificationsExample.CustomInput
+﻿namespace CustomNotificationsExample.CustomInput
 {
     /// <summary>
     /// Interaction logic for CustomCommandDisplayPart.xaml
     /// </summary>
-    public partial class CustomInputDisplayPart : NotificationDisplayPart
+    public partial class CustomInputDisplayPart
     {
         public CustomInputDisplayPart(CustomInputNotification notification)
         {

@@ -58,7 +58,7 @@ namespace ToastNotifications.Lifetime
         }
 
 
-        private bool _disposed = false;
+        private bool _disposed;
         public void Dispose()
         {
             if (_disposed)

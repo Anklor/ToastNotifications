@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using ToastNotifications.Core;
+// ReSharper disable UnusedParameter.Local
 
 namespace ToastNotifications.Position
 {
@@ -180,7 +181,7 @@ namespace ToastNotifications.Position
             if (SystemParameters.WorkArea.Top > 0)
                 return WindowsTaskBarLocation.Top;
 
-            if (SystemParameters.WorkArea.Left == 0 &&
+            if (Math.Abs(SystemParameters.WorkArea.Left) < 0 &&
                 SystemParameters.WorkArea.Width < SystemParameters.PrimaryScreenWidth)
                 return WindowsTaskBarLocation.Right;
 

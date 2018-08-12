@@ -13,17 +13,14 @@ namespace CustomNotificationsExample.MahAppsNotification
         public MahAppsNotification(string title, string message)
         {
             Title = title;
-            Message = message;
+            MessageText = message;
         }
 
         #region binding properties
         private string _title;
         public string Title
         {
-            get
-            {
-                return _title;
-            }
+            get => _title;
             set
             {
                 _title = value;
@@ -32,12 +29,9 @@ namespace CustomNotificationsExample.MahAppsNotification
         }
 
         private string _message;
-        public string Message
+        public string MessageText
         {
-            get
-            {
-                return _message;
-            }
+            get => _message;
             set
             {
                 _message = value;
@@ -50,8 +44,7 @@ namespace CustomNotificationsExample.MahAppsNotification
         protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             var handler = PropertyChanged;
-            if (handler != null)
-                handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

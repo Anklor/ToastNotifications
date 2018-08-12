@@ -8,7 +8,10 @@ namespace ToastNotifications.Position
         {
             var pt = element.PointToScreen(new Point(0, 0));
 			var source = PresentationSource.FromVisual(element);
-			return source.CompositionTarget.TransformFromDevice.Transform(pt);
-		}
+            if (source?.CompositionTarget != null)
+                return source.CompositionTarget.TransformFromDevice.Transform(pt);
+
+            return new Point();
+        }
     }
 }

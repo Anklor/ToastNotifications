@@ -1,6 +1,7 @@
 using System;
 using System.Windows;
 using ToastNotifications.Core;
+// ReSharper disable UnusedParameter.Local
 
 namespace ToastNotifications.Position
 {

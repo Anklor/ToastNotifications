@@ -1,12 +1,11 @@
 ﻿using System.Windows;
-using ToastNotifications.Core;
 
 namespace ToastNotifications.Messages.Error
 {
     /// <summary>
     /// Interaction logic for ErrorDisplayPart.xaml
     /// </summary>
-    public partial class ErrorDisplayPart : NotificationDisplayPart
+    public partial class ErrorDisplayPart
     {
         private readonly ErrorMessage _viewModel;
 

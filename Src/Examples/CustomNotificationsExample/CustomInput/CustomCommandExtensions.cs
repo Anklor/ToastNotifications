@@ -1,5 +1,4 @@
-﻿using System;
-using ToastNotifications;
+﻿using ToastNotifications;
 
 namespace CustomNotificationsExample.CustomInput
 {
@@ -7,7 +6,7 @@ namespace CustomNotificationsExample.CustomInput
     {
         public static void ShowCustomInput(this Notifier notifier, string message)
         {
-            notifier.Notify<CustomInputNotification>(() => new CustomInputNotification(message, message));
+            notifier.Notify(() => new CustomInputNotification(message, message));
         }
     }
 }

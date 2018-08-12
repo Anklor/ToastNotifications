@@ -13,10 +13,7 @@ namespace ToastNotifications.Utilities
 
         public static void SetDateTimeProvider(IDateTimeProvider provider)
         {
-            if (provider == null)
-                throw new ArgumentNullException(nameof(provider));
-
-            _provider = provider;
+            _provider = provider ?? throw new ArgumentNullException(nameof(provider));
         }
 
         public static DateTime Local => _provider.GetLocalDateTime();
