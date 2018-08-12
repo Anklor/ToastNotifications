@@ -20,7 +20,7 @@ namespace ToastNotifications.Messages.Information
 
         public override string GetMessage()
         {
-            return this._viewModel.MessageText;
+            return _viewModel.MessageText;
         }
 
         private void OnClose(object sender, RoutedEventArgs e)
@@ -28,6 +28,9 @@ namespace ToastNotifications.Messages.Information
             _viewModel.Close();
         }
 
-        public override IMessageOptions Options => this._viewModel.Options;
+        protected override void SetCloseButtonVisibility(Visibility visibility)
+        {
+            CloseButton.Visibility = visibility;
+        }
     }
 }

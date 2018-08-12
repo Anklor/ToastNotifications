@@ -2,11 +2,9 @@
 
 namespace ToastNotifications.Core
 {
-    public interface IMessageOptions
+    public interface INotificationConfiguration
     {
-        double? FontSize { get; set; }
         bool ShowCloseButton { get; set; }
-        object Tag { get; set; }
         bool FreezeOnMouseEnter { get; set; }
         bool UnfreezeOnMouseLeave { get; set; }
 

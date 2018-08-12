@@ -22,12 +22,15 @@ namespace ToastNotifications.Messages.Error
         {
             return _viewModel.MessageText;
         }
-        private void OnClose(object sender, RoutedEventArgs e)
-        {
 
-            _viewModel.Close();
+        protected override void SetCloseButtonVisibility(Visibility visibility)
+        {
+            CloseButton.Visibility = visibility;
         }
 
-        public override IMessageOptions Options => this._viewModel.Options;
+        private void OnClose(object sender, RoutedEventArgs e)
+        {
+            _viewModel.Close();
+        }
     }
 }

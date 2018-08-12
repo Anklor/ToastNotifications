@@ -1,5 +1,4 @@
-﻿using ToastNotifications.Core;
-using ToastNotifications.Messages.Core;
+﻿using ToastNotifications.Messages.Core;
 using ToastNotifications.Messages.Warning;
 
 namespace ToastNotifications.Messages
@@ -11,9 +10,9 @@ namespace ToastNotifications.Messages
             notifier.Notify<WarningMessage>(() => new WarningMessage(message));
         }
 
-        public static void ShowWarning(this Notifier notifier, string message, MessageOptions displayOptions)
+        public static void ShowWarning(this Notifier notifier, string message, MessageConfiguration configuration)
         {
-            notifier.Notify<WarningMessage>(() => new WarningMessage(message, displayOptions));
+            notifier.Notify<WarningMessage>(() => new WarningMessage(message, configuration));
         }
     }
 }

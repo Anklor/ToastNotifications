@@ -57,6 +57,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\MessageConfiguration.cs" />
     <Compile Include="ErrorExtensions.cs" />
     <Compile Include="Error\ErrorDisplayPart.xaml.cs">
       <DependentUpon>ErrorDisplayPart.xaml</DependentUpon>

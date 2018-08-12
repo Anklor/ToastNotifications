@@ -7,15 +7,13 @@ namespace ToastNotifications.Messages.Core
     {
         public string MessageText { get; }
 
-        public IMessageOptions Options { get; }
-
         private NotificationDisplayPart _displayPart;
         public override NotificationDisplayPart DisplayPart => _displayPart ?? (_displayPart = Configure());
 
-        protected MessageBase(string messageText, IMessageOptions options)
+        protected MessageBase(string messageText, MessageConfiguration configuration)
         {
             MessageText = messageText;
-            Options = options ?? new MessageOptions();
+            Configuration = configuration;
         }
 
         private TDisplayPart Configure()
@@ -24,7 +22,8 @@ namespace ToastNotifications.Messages.Core
 
             displayPart.Unloaded += OnUnloaded;
 
-            UpdateDisplayOptions(displayPart, Options);
+            UpdateConfiguration(displayPart, Configuration as MessageConfiguration);
+
             return displayPart;
         }
 
@@ -33,7 +32,7 @@ namespace ToastNotifications.Messages.Core
             _displayPart.Unloaded -= OnUnloaded;
         }
 
-        protected abstract void UpdateDisplayOptions(TDisplayPart displayPart, IMessageOptions options);
+        protected abstract void UpdateConfiguration(TDisplayPart displayPart, MessageConfiguration configuration);
 
         protected abstract TDisplayPart CreateDisplayPart();
     }

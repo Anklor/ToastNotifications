@@ -1,5 +1,4 @@
-﻿using ToastNotifications.Core;
-using ToastNotifications.Messages.Core;
+﻿using ToastNotifications.Messages.Core;
 using ToastNotifications.Messages.Success;
 
 namespace ToastNotifications.Messages
@@ -11,9 +10,9 @@ namespace ToastNotifications.Messages
             notifier.Notify<SuccessMessage>(() => new SuccessMessage(message));
         }
 
-        public static void ShowSuccess(this Notifier notifier, string message, MessageOptions displayOptions)
+        public static void ShowSuccess(this Notifier notifier, string message, MessageConfiguration configuration)
         {
-            notifier.Notify<SuccessMessage>(() => new SuccessMessage(message, displayOptions));
+            notifier.Notify<SuccessMessage>(() => new SuccessMessage(message, configuration));
         }
     }
 }

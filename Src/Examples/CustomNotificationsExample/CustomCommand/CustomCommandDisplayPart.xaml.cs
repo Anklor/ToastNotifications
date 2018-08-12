@@ -1,4 +1,5 @@
-﻿using ToastNotifications.Core;
+﻿using System.Windows;
+using ToastNotifications.Core;
 
 namespace CustomNotificationsExample.CustomCommand
 {
@@ -7,13 +8,15 @@ namespace CustomNotificationsExample.CustomCommand
     /// </summary>
     public partial class CustomCommandDisplayPart : NotificationDisplayPart
     {
-        private CustomCommandNotification _notification;
-
         public CustomCommandDisplayPart(CustomCommandNotification notification)
         {
             InitializeComponent();
-            _notification = notification;
-            DataContext = notification;
+            Bind(notification);
+        }
+
+        protected override void SetCloseButtonVisibility(Visibility visibility)
+        {
+            
         }
     }
 }

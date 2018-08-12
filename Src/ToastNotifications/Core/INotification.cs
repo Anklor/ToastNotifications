@@ -8,11 +8,14 @@ namespace ToastNotifications.Core
 
         NotificationDisplayPart DisplayPart { get; }
 
+        INotificationConfiguration Configuration { get; set; }
+
         void Bind(Action<INotification> closeAction);
 
         void Close();
 
         string Message { get; }
+
         bool CanClose { get; set; }
     }
 }

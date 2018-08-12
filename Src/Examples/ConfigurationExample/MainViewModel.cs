@@ -7,6 +7,7 @@ using ToastNotifications;
 using ToastNotifications.Core;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
+using ToastNotifications.Messages.Core;
 using ToastNotifications.Position;
 
 namespace ConfigurationExample
@@ -88,9 +89,9 @@ namespace ConfigurationExample
             _notifier.ShowWarning(message, CreateOptions());
         }
 
-        private MessageOptions CreateOptions()
+        private MessageConfiguration CreateOptions()
         {
-            return new MessageOptions
+            return new MessageConfiguration()
             {
                 FreezeOnMouseEnter = FreezeOnMouseEnter,
                 UnfreezeOnMouseLeave = UnFreezeOnMouseEnter,
@@ -115,7 +116,7 @@ namespace ConfigurationExample
 
         public void ShowCustomizedMessage(string message)
         {
-            var options = new MessageOptions
+            var options = new MessageConfiguration
             {
                 FontSize = 25,
                 ShowCloseButton = false,

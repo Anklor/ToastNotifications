@@ -2,7 +2,7 @@
 
 namespace ToastNotifications.Core
 {
-    public class MessageOptions: IMessageOptions
+    public class MessageNotificationConfiguration : INotificationConfiguration
     {
         public double? FontSize { get; set; }
         public bool ShowCloseButton { get; set; }
@@ -13,7 +13,7 @@ namespace ToastNotifications.Core
         public Action<INotification> NotificationClickAction { get; set; }
         public Action<INotification> CloseClickAction { get; set; }
 
-        public MessageOptions()
+        public MessageNotificationConfiguration()
         {
             ShowCloseButton = true;
             FreezeOnMouseEnter = true;

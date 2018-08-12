@@ -1,16 +1,15 @@
 ﻿using System.Windows;
-using ToastNotifications.Core;
 using ToastNotifications.Messages.Core;
 
 namespace ToastNotifications.Messages.Warning
 {
     public class WarningMessage : MessageBase<WarningDisplayPart>
     {
-        public WarningMessage(string messageText) : this(messageText, new MessageOptions())
+        public WarningMessage(string messageText) : this(messageText, new MessageConfiguration())
         {
         }
 
-        public WarningMessage(string messageText, IMessageOptions options) : base(messageText, options)
+        public WarningMessage(string messageText, MessageConfiguration configuration) : base(messageText, configuration)
         {
         }
 
@@ -19,12 +18,12 @@ namespace ToastNotifications.Messages.Warning
             return new WarningDisplayPart(this);
         }
 
-        protected override void UpdateDisplayOptions(WarningDisplayPart displayPart, IMessageOptions options)
+        protected override void UpdateConfiguration(WarningDisplayPart displayPart, MessageConfiguration configuration)
         {
-            if (options.FontSize != null)
-                displayPart.Text.FontSize = options.FontSize.Value;
+            if (configuration.FontSize != null)
+                displayPart.Text.FontSize = configuration.FontSize.Value;
 
-            displayPart.CloseButton.Visibility = options.ShowCloseButton ? Visibility.Visible : Visibility.Collapsed;
+            displayPart.CloseButton.Visibility = configuration.ShowCloseButton ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }

@@ -28,6 +28,9 @@ namespace ToastNotifications.Messages.Success
             _viewModel.Close();
         }
 
-        public override IMessageOptions Options => this._viewModel.Options;
+        protected override void SetCloseButtonVisibility(Visibility visibility)
+        {
+            CloseButton.Visibility = visibility;
+        }
     }
 }

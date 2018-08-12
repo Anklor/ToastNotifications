@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using ToastNotifications.Core;
+using ToastNotifications.Messages.Core;
 
 namespace BasicUsageExample
 {
@@ -46,9 +47,9 @@ namespace BasicUsageExample
         }
 
         string _lastMessage;
-        void ShowMessage(Action<string, MessageOptions> action, string name)
+        void ShowMessage(Action<string, MessageConfiguration> action, string name)
         {
-            MessageOptions opts = new MessageOptions
+            MessageConfiguration opts = new MessageConfiguration
             {
                 CloseClickAction = CloseAction,
                 Tag = $"[This is Tag Value ({++_count})]",
@@ -63,8 +64,8 @@ namespace BasicUsageExample
 
         private void CloseAction(INotification obj)
         {
-            var opts = obj.DisplayPart.Options;
-            _vm.ShowInformation($"Notification close clicked, Tag: {opts.Tag}");
+            var configuration = obj.Configuration as MessageConfiguration;
+            _vm.ShowInformation($"Notification close clicked, Tag: {configuration?.Tag}");
         }
 
 
@@ -83,7 +84,7 @@ namespace BasicUsageExample
         {
             const string sameContent = "Same Content - not duplicated";
             _vm.ClearMessages(sameContent);
-            MessageOptions opts = new MessageOptions
+            MessageConfiguration opts = new MessageConfiguration
             {
                 CloseClickAction = CloseAction,
                 Tag = "[This is Tag Value]",

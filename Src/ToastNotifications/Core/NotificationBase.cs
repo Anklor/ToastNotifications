@@ -4,13 +4,15 @@ namespace ToastNotifications.Core
 {
     public abstract class NotificationBase : INotification
     {
+        public int Id { get; set; }
+
         private Action<INotification> _closeAction;
 
         public bool CanClose { get; set; } = true;
 
         public abstract NotificationDisplayPart DisplayPart { get; }
 
-        public int Id { get; set; }
+        public INotificationConfiguration Configuration { get; set; }
 
         public virtual void Bind(Action<INotification> closeAction)
         {
@@ -19,10 +21,7 @@ namespace ToastNotifications.Core
 
         public virtual void Close()
         {
-            if (DisplayPart.Options is IMessageOptions opts)
-            {
-                opts.CloseClickAction?.Invoke(this);
-            }
+            Configuration.CloseClickAction?.Invoke(this);
             _closeAction?.Invoke(this);
         }
 

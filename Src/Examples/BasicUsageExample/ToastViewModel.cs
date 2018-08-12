@@ -2,9 +2,9 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using ToastNotifications;
-using ToastNotifications.Core;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
+using ToastNotifications.Messages.Core;
 using ToastNotifications.Position;
 
 namespace BasicUsageExample
@@ -46,7 +46,7 @@ namespace BasicUsageExample
             _notifier.ShowInformation(message);
         }
 
-        public void ShowInformation(string message, MessageOptions opts)
+        public void ShowInformation(string message, MessageConfiguration opts)
         {
             _notifier.ShowInformation(message, opts);
         }
@@ -56,7 +56,7 @@ namespace BasicUsageExample
             _notifier.ShowSuccess(message);
         }
 
-        public void ShowSuccess(string message, MessageOptions opts)
+        public void ShowSuccess(string message, MessageConfiguration opts)
         {
             _notifier.ShowSuccess(message, opts);
         }
@@ -66,7 +66,7 @@ namespace BasicUsageExample
             _notifier.ClearMessages(msg);
         }
 
-        public void ShowWarning(string message, MessageOptions opts)
+        public void ShowWarning(string message, MessageConfiguration opts)
         {
             _notifier.ShowWarning(message, opts);
         }
@@ -76,7 +76,7 @@ namespace BasicUsageExample
             _notifier.ShowError(message);
         }
 
-        public void ShowError(string message, MessageOptions opts)
+        public void ShowError(string message, MessageConfiguration opts)
         {
             _notifier.ShowError(message, opts);
         }

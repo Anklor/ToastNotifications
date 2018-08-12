@@ -1,16 +1,15 @@
 ﻿using System.Windows;
-using ToastNotifications.Core;
 using ToastNotifications.Messages.Core;
 
 namespace ToastNotifications.Messages.Success
 {
     public class SuccessMessage : MessageBase<SuccessDisplayPart>
     {
-        public SuccessMessage(string messageText) : this(messageText, new MessageOptions())
+        public SuccessMessage(string messageText) : this(messageText, new MessageConfiguration())
         {
         }
 
-        public SuccessMessage(string messageText, IMessageOptions options) : base(messageText, options)
+        public SuccessMessage(string messageText, MessageConfiguration configuration) : base(messageText, configuration)
         {
         }
 
@@ -19,12 +18,12 @@ namespace ToastNotifications.Messages.Success
             return new SuccessDisplayPart(this);
         }
 
-        protected override void UpdateDisplayOptions(SuccessDisplayPart displayPart, IMessageOptions options)
+        protected override void UpdateConfiguration(SuccessDisplayPart displayPart, MessageConfiguration configuration)
         {
-            if (options.FontSize != null)
-                displayPart.Text.FontSize = options.FontSize.Value;
+            if (configuration.FontSize != null)
+                displayPart.Text.FontSize = configuration.FontSize.Value;
 
-            displayPart.CloseButton.Visibility = options.ShowCloseButton ? Visibility.Visible : Visibility.Collapsed;
+            displayPart.CloseButton.Visibility = configuration.ShowCloseButton ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }

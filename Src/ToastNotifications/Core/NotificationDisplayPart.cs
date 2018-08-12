@@ -3,67 +3,57 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using ToastNotifications.Display;
-using ToastNotifications.Utilities;
 
 namespace ToastNotifications.Core
 {
     public abstract class NotificationDisplayPart : UserControl
     {
         protected INotificationAnimator Animator;
-        protected INotification Notification { get; private set; }
-        public virtual IMessageOptions Options { get; set; }
+
+        protected INotification Notification { get; set; }
+
+        protected INotificationConfiguration Configuration => Notification?.Configuration;
 
         protected NotificationDisplayPart()
         {
             Animator = new NotificationAnimator(this, TimeSpan.FromMilliseconds(300), TimeSpan.FromMilliseconds(300));
 
             Margin = new Thickness(1);
-
             Animator.Setup();
+            MinHeight = 60;
 
             Loaded += OnLoaded;
-            MinHeight = 60;
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);
-            Options?.NotificationClickAction?.Invoke(Notification);
+            Configuration?.NotificationClickAction?.Invoke(Notification);
         }
 
         protected override void OnMouseEnter(MouseEventArgs e)
         {
-            var dc = DataContext as INotification;
-            var opts = dc?.DisplayPart?.Options;
-            if (opts != null && opts.FreezeOnMouseEnter)
+            if (Configuration != null && Configuration.FreezeOnMouseEnter)
             {
-                if (!opts.UnfreezeOnMouseLeave) // message stay freezed, show close button
-                {
-                    if (Content is Border)
-                    {
-                        if (dc.CanClose)
-                        {
-                            dc.CanClose = false;
-                            var btn = this.FindChild<Button>("CloseButton");
-                            btn.Visibility = Visibility.Visible;
-                        }
-                    }
-                }
-                else
-                {
-                    dc.CanClose = false;
-                }
+                Notification.CanClose = false;
+                SetCloseButtonVisibility(Visibility.Visible);
             }
             base.OnMouseEnter(e);
         }
 
         protected override void OnMouseLeave(MouseEventArgs e)
         {
-            var opts = Notification?.DisplayPart?.Options;
-            if (opts != null && opts.FreezeOnMouseEnter && opts.UnfreezeOnMouseLeave)
+            if (Configuration != null)
             {
-                Notification.CanClose = true;
+                if (Configuration.FreezeOnMouseEnter && Configuration.UnfreezeOnMouseLeave)
+                {
+                    Notification.CanClose = true;
+                }
+
+                var closeButtonVisibility = Configuration.ShowCloseButton ? Visibility.Visible : Visibility.Hidden;
+                SetCloseButtonVisibility(closeButtonVisibility);
             }
+
             base.OnMouseLeave(e);
         }
 
@@ -78,14 +68,24 @@ namespace ToastNotifications.Core
             DataContext = Notification;
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+        private  void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
+            if (Notification == null)
+            {
+                throw new InvalidOperationException(
+                    $"Unbound notification. {nameof(Bind)} method was not invoked after conrol initialization.");
+            }
+
             Animator.PlayShowAnimation();
         }
 
-        public void OnClose()
+        public virtual void OnClose()
         {
             Animator.PlayHideAnimation();
+        }
+
+        protected virtual void SetCloseButtonVisibility(Visibility visibility)
+        {
         }
     }
 }

@@ -58,8 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\DisplayOptions.cs" />
-    <Compile Include="Core\IMessageOptions.cs" />
-    <Compile Include="Core\MessageOptions.cs" />
+    <Compile Include="Core\INotificationConfiguration.cs" />
+    <Compile Include="Core\MessageNotificationConfiguration.cs" />
+    <Compile Include="Core\NotificationConfiguration.cs" />
     <Compile Include="Core\WindowsTaskBarLocation.cs" />
     <Compile Include="Events\AllowedSourcesInputEventHandler.cs" />
     <Compile Include="Events\BlockAllKeyInputEventHandler.cs" />
