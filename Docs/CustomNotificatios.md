@@ -112,15 +112,12 @@ CustomDisplayPart.xaml
 ```
 CustomDisplayPart.xaml.cs
 ```csharp
-    public partial class CustomDisplayPart : NotificationDisplayPart
+    public partial class CustomDisplayPart
     {
-        private CustomNotification _customNotification;
-
         public CustomDisplayPart(CustomNotification customNotification)
         {
-            _customNotification = customNotification;
-            DataContext = customNotification; // this allows to bind ui with data in notification
             InitializeComponent();
+            Bind(customNotification);
         }
     }
 ```
@@ -137,7 +134,7 @@ Extension method will be used to simplify the usage of CustomNotification in app
     }
 ```
 
-### 5 Use notifier with CustomNotification
+### 6 Use notifier with CustomNotification
 ```csharp
     notifier.ShowCustomMessage("This is custom notification based on user control");
 ```

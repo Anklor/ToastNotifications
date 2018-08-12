@@ -125,15 +125,17 @@ notifier.ClearMessages("Foo"); // removes all notifications with text "Foo"
 ```
 
 
-### Message options
+### Notification configuration
+Every notification can be configured separately by providing object implementing interface INotificationConfiguration.
+This interface core configuration properties and actions. 
+It can be easily extended to provide more control of custom notifications.
+
 ```csharp
 
 using ToastNotifications.Messages.Core;
 /* * */
-var options =  new MessageOptions{
-    FontSize = 30, // set notification font size
+INotificationConfiguration configuration =  new BaseNotificationConfiguration{
     ShowCloseButton = false // set the option to show or hide notification close button
-    Tag = "Any object or value which might matter in callbacks",
     FreezeOnMouseEnter = true, // set the option to prevent notification dissapear automatically if user move cursor on it
     ShowCloseButton = true, // set the option to show or hide close button on notifications
     NotificationClickAction = n => // set the callback for notification click event
@@ -146,8 +148,14 @@ var options =  new MessageOptions{
         _vm.ShowInformation($"Notification close clicked, Tag: {opts.Tag}");
     },
 };
+
+// Extended notification configuration for ToastNotifications.Messages
+INotificationConfiguration configuration =  new MessageConfiguration{
+    FontSize = 30, // set notification font size
+    Tag = "Any object or value which might matter in callbacks"
+};
 /* * */
-notifier.ShowError(message, options);
+notifier.ShowError(message, configuration);
 ```
 
 ### Notifier keyboard event handler
