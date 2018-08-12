@@ -6,13 +6,20 @@
         xmlns:local="clr-namespace:CustomNotificationsExample"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
-        Title="MainWindow" Height="90" Width="500">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
         <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
             <Button Content="Custom message" Margin="5" Padding="5" Click="CustomMessage_Click"/>
             <Button Content="Custom command" Margin="5" Padding="5" Click="CustomCommand_Click"/>
             <Button Content="Custom input" Margin="5" Padding="5" Click="CustomInput_Click"/>
             <Button Content="MahApps command" Margin="5" Padding="5" Click="MahApps_Click"/>
+            <Button Content="Show child window" Margin="5" Padding="5" Click="Show_ChildWindow">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Show child window" Click="Show_ChildWindow" />
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>

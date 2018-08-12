@@ -16,7 +16,7 @@ namespace ToastNotifications.Display
     {
         private IKeyboardEventHandler _keyboardEventHandler;
 
-        public NotificationsWindow()
+        public NotificationsWindow(Window owner)
         {
             InitializeComponent();
 
@@ -24,15 +24,6 @@ namespace ToastNotifications.Display
             Closing += NotificationsWindow_Closing;
 
             ShowInTaskbar = false;
-            Visibility = Visibility.Hidden;
-        }
-
-        public NotificationsWindow(Window owner)
-        {
-            InitializeComponent();
-
-            Loaded += NotificationsWindow_Loaded;
-            Closing += NotificationsWindow_Closing;
 
             Owner = owner;
         }

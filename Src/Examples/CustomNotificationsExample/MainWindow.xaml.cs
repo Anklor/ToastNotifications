@@ -27,7 +27,7 @@ namespace CustomNotificationsExample
             _notifier = new Notifier(cfg =>
             {
                 cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(15), MaximumNotificationCount.FromCount(15));
-                cfg.PositionProvider = new PrimaryScreenPositionProvider(Corner.BottomRight, 10, 10);
+                cfg.PositionProvider = new WindowPositionProvider(this, Corner.BottomRight, 10, 10);
                 cfg.KeyboardEventHandler = new AllowedSourcesInputEventHandler(new []{ typeof(CustomInputDisplayPart) });
             });
         }
@@ -59,5 +59,11 @@ namespace CustomNotificationsExample
             _notifier.ShowMahAppsNotification("MahApps notification", "This is custom notification with MahApps styles");
         }
 
+        private void Show_ChildWindow(object sender, RoutedEventArgs e)
+        {
+            var childWindow = new MainWindow();
+            childWindow.ShowActivated = true;
+            childWindow.Show();
+        }
     }
 }
