@@ -90,10 +90,10 @@ namespace ToastNotifications.Display
         {
             WindowInteropHelper wndHelper = new WindowInteropHelper(this);
 
-            int exStyle = (int)WinApi.GetWindowLong(wndHelper.Handle, (int)WinApi.GetWindowLongFields.GwlExstyle);
+            int exStyle = (int)NativeMethods.GetWindowLong(wndHelper.Handle, (int)NativeMethods.GetWindowLongFields.GwlExstyle);
 
-            exStyle |= (int)WinApi.ExtendedWindowStyles.WsExToolwindow;
-            WinApi.SetWindowLong(wndHelper.Handle, (int)WinApi.GetWindowLongFields.GwlExstyle, (IntPtr)exStyle);
+            exStyle |= (int)NativeMethods.ExtendedWindowStyles.WsExToolwindow;
+            NativeMethods.SetWindowLong(wndHelper.Handle, (int)NativeMethods.GetWindowLongFields.GwlExstyle, (IntPtr)exStyle);
         }
 
         private void NotificationsWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)

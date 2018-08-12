@@ -79,19 +79,30 @@ namespace ToastNotifications
             _lifetimeSupervisor?.ClearMessages(msg);
         }
 
-        private bool _disposed;
 
         public object SyncRoot => _syncRoot;
 
         public void Dispose()
         {
-            if (_disposed == false)
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private bool _disposed;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+
+            if (disposing)
             {
-                _disposed = true;
                 _configuration?.PositionProvider?.Dispose();
                 _displaySupervisor?.Dispose();
                 _lifetimeSupervisor?.Dispose();
             }
+
+            _disposed = true;
         }
+
     }
 }

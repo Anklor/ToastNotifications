@@ -78,18 +78,28 @@ namespace ToastNotifications.Lifetime
         }
 
 
-        private bool _disposed;
         public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private bool _disposed;
+        protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
                 return;
 
+            if (disposing)
+            {
+                _interval?.Stop();
+                _interval = null;
+                _notifications?.Clear();
+                _notifications = null;
+                _notificationsPending?.Clear();
+            }
+
             _disposed = true;
-            _interval?.Stop();
-            _interval = null;
-            _notifications?.Clear();
-            _notifications = null;
-            _notificationsPending?.Clear();
         }
 
 

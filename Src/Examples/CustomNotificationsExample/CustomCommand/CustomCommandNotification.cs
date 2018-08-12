@@ -14,7 +14,9 @@ namespace CustomNotificationsExample.CustomCommand
         public ICommand ConfirmCommand { get; set; }
         public ICommand DeclineCommand { get; set; }
 
-        public CustomCommandNotification(string message, Action<CustomCommandNotification> confirmAction, Action<CustomCommandNotification> declineAction)
+        public CustomCommandNotification(string message,
+            Action<CustomCommandNotification> confirmAction,
+            Action<CustomCommandNotification> declineAction)
         {
             MessageText = message;
 

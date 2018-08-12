@@ -188,11 +188,26 @@ namespace ToastNotifications.Position
             return WindowsTaskBarLocation.Bottom;
         }
 
-
         public void Dispose()
         {
-            // nothing to do here
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
+
+        private bool _disposed;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+
+            if (disposing)
+            {
+
+            }
+
+            _disposed = true;
+        }
+
 
 #pragma warning disable CS0067
         public event EventHandler UpdatePositionRequested;

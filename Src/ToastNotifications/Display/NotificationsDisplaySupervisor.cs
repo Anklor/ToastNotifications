@@ -159,17 +159,32 @@ namespace ToastNotifications.Display
 
         public void Dispose()
         {
-            _window?.Close();
-            _window = null;
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-            _lifetimeSupervisor.ShowNotificationRequested -= LifetimeSupervisorOnShowNotificationRequested;
-            _lifetimeSupervisor.CloseNotificationRequested -= LifetimeSupervisorOnCloseNotificationRequested;
+        private bool _disposed;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
 
-            _positionProvider.UpdatePositionRequested -= PositionProviderOnUpdatePositionRequested;
-            _positionProvider.UpdateEjectDirectionRequested -= PositionProviderOnUpdateEjectDirectionRequested;
-            _positionProvider.UpdateHeightRequested -= PositionProviderOnUpdateHeightRequested;
+            if (disposing)
+            {
+                _window?.Close();
+                _window = null;
 
-            _lifetimeSupervisor = null;
+                _lifetimeSupervisor.ShowNotificationRequested -= LifetimeSupervisorOnShowNotificationRequested;
+                _lifetimeSupervisor.CloseNotificationRequested -= LifetimeSupervisorOnCloseNotificationRequested;
+
+                _positionProvider.UpdatePositionRequested -= PositionProviderOnUpdatePositionRequested;
+                _positionProvider.UpdateEjectDirectionRequested -= PositionProviderOnUpdateEjectDirectionRequested;
+                _positionProvider.UpdateHeightRequested -= PositionProviderOnUpdateHeightRequested;
+
+                _lifetimeSupervisor = null;
+            }
+
+            _disposed = true;
         }
     }
 }

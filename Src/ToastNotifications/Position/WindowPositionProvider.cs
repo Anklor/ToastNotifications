@@ -108,12 +108,28 @@ namespace ToastNotifications.Position
             return new Point( parentPosition.X + GetWindowWidth() - _offsetX - actualPopupWidth,  parentPosition.Y + _offsetY);
         }
 
+
+        private bool _disposed;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+
+            if (disposing)
+            {
+                ParentWindow.LocationChanged -= ParentWindowOnLocationChanged;
+                ParentWindow.SizeChanged -= ParentWindowOnSizeChanged;
+                ParentWindow.StateChanged -= ParentWindowOnStateChanged;
+                ParentWindow.Activated -= ParentWindowOnActivated;
+            }
+
+            _disposed = true;
+        }
+
         public void Dispose()
         {
-            ParentWindow.LocationChanged -= ParentWindowOnLocationChanged;
-            ParentWindow.SizeChanged -= ParentWindowOnSizeChanged;
-            ParentWindow.StateChanged -= ParentWindowOnStateChanged;
-            ParentWindow.Activated -= ParentWindowOnActivated;
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         protected virtual void RequestUpdatePosition()

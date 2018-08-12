@@ -66,6 +66,7 @@
     <Compile Include="Events\BlockAllKeyInputEventHandler.cs" />
     <Compile Include="Events\DelegatedInputEventHandler.cs" />
     <Compile Include="Events\IKeyboardEventHandler.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Notifier.cs" />
     <Compile Include="Position\PositionExtensions.cs" />
     <Compile Include="Utilities\DateTimeNow.cs" />
@@ -74,7 +75,7 @@
     <Compile Include="Utilities\IDateTimeProvider.cs" />
     <Compile Include="Utilities\IInterval.cs" />
     <Compile Include="Utilities\Interval.cs" />
-    <Compile Include="Utilities\WinApi.cs" />
+    <Compile Include="Utilities\NativeMethods.cs" />
     <Page Include="Display\NotificationsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

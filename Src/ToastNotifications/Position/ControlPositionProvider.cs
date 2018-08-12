@@ -108,8 +108,23 @@ namespace ToastNotifications.Position
 
         public void Dispose()
         {
-            ParentWindow.LocationChanged -= ParentWindowOnLocationChanged;
-            ParentWindow.SizeChanged -= ParentWindowOnSizeChanged;
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private bool _disposed;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+
+            if (disposing)
+            {
+                ParentWindow.LocationChanged -= ParentWindowOnLocationChanged;
+                ParentWindow.SizeChanged -= ParentWindowOnSizeChanged;
+            }
+
+            _disposed = true;
         }
 
         protected virtual void RequestUpdatePosition()

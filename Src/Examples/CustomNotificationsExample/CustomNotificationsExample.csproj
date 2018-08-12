@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="CustomInput\CustomCommandExtensions.cs" />
     <Compile Include="CustomInput\CustomInputNotification.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MahAppsNotification\MahAppsDisplayPart.xaml.cs">
       <DependentUpon>MahAppsDisplayPart.xaml</DependentUpon>
     </Compile>
