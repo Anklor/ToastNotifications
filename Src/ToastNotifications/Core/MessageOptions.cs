@@ -2,19 +2,22 @@
 
 namespace ToastNotifications.Core
 {
-    public class MessageOptions
+    public class MessageOptions: IMessageOptions
     {
         public double? FontSize { get; set; }
-
-        public bool ShowCloseButton { get; set; } = true;
-
+        public bool ShowCloseButton { get; set; }
         public object Tag { get; set; }
+        public bool FreezeOnMouseEnter { get; set; }
+        public bool UnfreezeOnMouseLeave { get; set; }
 
-        public bool FreezeOnMouseEnter { get; set; } = true;
+        public Action<INotification> NotificationClickAction { get; set; }
+        public Action<INotification> CloseClickAction { get; set; }
 
-        public Action<NotificationBase> NotificationClickAction { get; set; }
-
-        public Action<NotificationBase> CloseClickAction { get; set; }
-        public bool UnfreezeOnMouseLeave { get; set; } = false;
+        public MessageOptions()
+        {
+            ShowCloseButton = true;
+            FreezeOnMouseEnter = true;
+            UnfreezeOnMouseLeave = false;
+        }
     }
 }

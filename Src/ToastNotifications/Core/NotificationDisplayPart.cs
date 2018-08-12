@@ -10,7 +10,8 @@ namespace ToastNotifications.Core
     public abstract class NotificationDisplayPart : UserControl
     {
         protected INotificationAnimator Animator;
-        public INotification Notification { get; protected set; }
+        protected INotification Notification { get; private set; }
+        public virtual IMessageOptions Options { get; set; }
 
         protected NotificationDisplayPart()
         {
@@ -24,21 +25,21 @@ namespace ToastNotifications.Core
             MinHeight = 60;
         }
 
-        public virtual MessageOptions GetOptions()
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            return null;
+            base.OnMouseLeftButtonDown(e);
+            Options?.NotificationClickAction?.Invoke(Notification);
         }
 
         protected override void OnMouseEnter(MouseEventArgs e)
         {
             var dc = DataContext as INotification;
-            var opts = dc?.DisplayPart?.GetOptions();
+            var opts = dc?.DisplayPart?.Options;
             if (opts != null && opts.FreezeOnMouseEnter)
             {
                 if (!opts.UnfreezeOnMouseLeave) // message stay freezed, show close button
                 {
-                    var bord2 = this.Content as Border;
-                    if (bord2 != null)
+                    if (Content is Border)
                     {
                         if (dc.CanClose)
                         {
@@ -58,19 +59,17 @@ namespace ToastNotifications.Core
 
         protected override void OnMouseLeave(MouseEventArgs e)
         {
-            var dc = DataContext as INotification;
-            var opts = dc?.DisplayPart?.GetOptions();
+            var opts = Notification?.DisplayPart?.Options;
             if (opts != null && opts.FreezeOnMouseEnter && opts.UnfreezeOnMouseLeave)
             {
-                dc.CanClose = true;
+                Notification.CanClose = true;
             }
             base.OnMouseLeave(e);
         }
 
-
         public virtual string GetMessage()
         {
-            return "?";
+            return Notification.Message;
         }
 
         public void Bind<TNotification>(TNotification notification) where TNotification : INotification

@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\DisplayOptions.cs" />
+    <Compile Include="Core\IMessageOptions.cs" />
     <Compile Include="Core\MessageOptions.cs" />
     <Compile Include="Core\WindowsTaskBarLocation.cs" />
     <Compile Include="Events\AllowedSourcesInputEventHandler.cs" />

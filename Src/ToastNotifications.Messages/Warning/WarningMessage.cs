@@ -6,11 +6,11 @@ namespace ToastNotifications.Messages.Warning
 {
     public class WarningMessage : MessageBase<WarningDisplayPart>
     {
-        public WarningMessage(string message) : this(message, new MessageOptions())
+        public WarningMessage(string messageText) : this(messageText, new MessageOptions())
         {
         }
 
-        public WarningMessage(string message, MessageOptions options) : base(message, options)
+        public WarningMessage(string messageText, IMessageOptions options) : base(messageText, options)
         {
         }
 
@@ -19,7 +19,7 @@ namespace ToastNotifications.Messages.Warning
             return new WarningDisplayPart(this);
         }
 
-        protected override void UpdateDisplayOptions(WarningDisplayPart displayPart, MessageOptions options)
+        protected override void UpdateDisplayOptions(WarningDisplayPart displayPart, IMessageOptions options)
         {
             if (options.FontSize != null)
                 displayPart.Text.FontSize = options.FontSize.Value;

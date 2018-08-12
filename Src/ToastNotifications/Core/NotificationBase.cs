@@ -19,17 +19,13 @@ namespace ToastNotifications.Core
 
         public virtual void Close()
         {
-            var opts = DisplayPart.GetOptions() as MessageOptions;
-            if (opts != null && opts.CloseClickAction != null)
+            if (DisplayPart.Options is IMessageOptions opts)
             {
-                opts.CloseClickAction(this);
+                opts.CloseClickAction?.Invoke(this);
             }
             _closeAction?.Invoke(this);
         }
 
-        public string GetMessage()
-        {
-            return DisplayPart.GetMessage();
-        }
+        public string Message => DisplayPart.GetMessage();
     }
 }

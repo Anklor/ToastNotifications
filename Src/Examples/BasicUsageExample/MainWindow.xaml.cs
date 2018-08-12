@@ -61,9 +61,9 @@ namespace BasicUsageExample
             bClearLast.IsEnabled = true;
         }
 
-        private void CloseAction(NotificationBase obj)
+        private void CloseAction(INotification obj)
         {
-            var opts = obj.DisplayPart.GetOptions();
+            var opts = obj.DisplayPart.Options;
             _vm.ShowInformation($"Notification close clicked, Tag: {opts.Tag}");
         }
 

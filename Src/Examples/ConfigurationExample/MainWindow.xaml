@@ -74,6 +74,7 @@
                 <TextBlock Text="Options:" VerticalAlignment="Center" Margin="5" FontWeight="Bold" />
                 <CheckBox IsChecked="{Binding ShowCloseButton, Mode=TwoWay}" VerticalAlignment="Center">ShowCloseButton</CheckBox>
                 <CheckBox IsChecked="{Binding FreezeOnMouseEnter, Mode=TwoWay}" VerticalAlignment="Center" Margin="20 0 0 0">FreezeOnMouseEnter</CheckBox>
+                <CheckBox IsChecked="{Binding UnFreezeOnMouseEnter, Mode=TwoWay}" VerticalAlignment="Center" Margin="20 0 0 0">UnfreezeOnMouseEnter</CheckBox>
             </StackPanel>
         </Grid>
 

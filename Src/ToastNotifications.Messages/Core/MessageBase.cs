@@ -1,33 +1,28 @@
 ﻿using System.Windows;
-using System.Windows.Input;
 using ToastNotifications.Core;
 
 namespace ToastNotifications.Messages.Core
 {
     public abstract class MessageBase<TDisplayPart> : NotificationBase where TDisplayPart : NotificationDisplayPart
     {
-        protected NotificationDisplayPart _displayPart;
-        internal readonly MessageOptions Options;
+        public string MessageText { get; }
 
-        public string Message { get; }
+        public IMessageOptions Options { get; }
 
-        public MessageBase(string message, MessageOptions options)
-        {
-            Message = message;
-            if (options == null)
-                Options = new MessageOptions();
-            else
-                Options = options;
-        }
-
+        private NotificationDisplayPart _displayPart;
         public override NotificationDisplayPart DisplayPart => _displayPart ?? (_displayPart = Configure());
+
+        protected MessageBase(string messageText, IMessageOptions options)
+        {
+            MessageText = messageText;
+            Options = options ?? new MessageOptions();
+        }
 
         private TDisplayPart Configure()
         {
             TDisplayPart displayPart = CreateDisplayPart();
 
             displayPart.Unloaded += OnUnloaded;
-            displayPart.MouseLeftButtonDown += OnLeftMouseDown;
 
             UpdateDisplayOptions(displayPart, Options);
             return displayPart;
@@ -35,16 +30,10 @@ namespace ToastNotifications.Messages.Core
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            _displayPart.MouseLeftButtonDown -= OnLeftMouseDown;
             _displayPart.Unloaded -= OnUnloaded;
         }
 
-        private void OnLeftMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Options.NotificationClickAction?.Invoke(this);
-        }
-
-        protected abstract void UpdateDisplayOptions(TDisplayPart displayPart, MessageOptions options);
+        protected abstract void UpdateDisplayOptions(TDisplayPart displayPart, IMessageOptions options);
 
         protected abstract TDisplayPart CreateDisplayPart();
     }

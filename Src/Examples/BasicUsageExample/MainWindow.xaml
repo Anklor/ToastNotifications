@@ -10,7 +10,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <DockPanel HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center">
-            <TextBlock Text="Message options: " FontWeight="SemiBold" Margin="5 0"/>
+            <TextBlock Text="MessageText options: " FontWeight="SemiBold" Margin="5 0"/>
             <CheckBox Name="cbFreezeOnMouseEnter" Content="FreezeOnMouseEnter" IsChecked="True" Margin="5 2"/>
             <CheckBox Name="cbUnfreezeOnMouseLeave" Content="UnfreezeOnMouseLeave" IsChecked="False" Margin="5 2"/>
 

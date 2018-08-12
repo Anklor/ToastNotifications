@@ -19,7 +19,12 @@ namespace ConfigurationExample
         public MainViewModel()
         {
             _notifier = CreateNotifier(Corner.TopRight, PositionProviderType.Window, NotificationLifetimeType.Basic);
-            Application.Current.MainWindow.Closing += MainWindowOnClosing;
+            if (Application.Current.MainWindow != null)
+                Application.Current.MainWindow.Closing += MainWindowOnClosing;
+
+            FreezeOnMouseEnter = true;
+            UnFreezeOnMouseEnter = true;
+            ShowCloseButton = false;
         }
 
         public Notifier CreateNotifier(Corner corner, PositionProviderType relation, NotificationLifetimeType lifetime)
@@ -80,27 +85,32 @@ namespace ConfigurationExample
         #region notifier messages
         internal void ShowWarning(string message)
         {
-            _notifier.ShowWarning(message, createOptions());
+            _notifier.ShowWarning(message, CreateOptions());
         }
 
-        private MessageOptions createOptions()
+        private MessageOptions CreateOptions()
         {
-            return new MessageOptions() { FreezeOnMouseEnter = this.FreezeOnMouseEnter.GetValueOrDefault(), ShowCloseButton = this.ShowCloseButton.GetValueOrDefault()};
+            return new MessageOptions
+            {
+                FreezeOnMouseEnter = FreezeOnMouseEnter,
+                UnfreezeOnMouseLeave = UnFreezeOnMouseEnter,
+                ShowCloseButton = ShowCloseButton
+            };
         }
 
         internal void ShowSuccess(string message)
         {
-            _notifier.ShowSuccess(message, createOptions());
+            _notifier.ShowSuccess(message, CreateOptions());
         }
 
         public void ShowInformation(string message)
         {
-            _notifier.ShowInformation(message, createOptions());
+            _notifier.ShowInformation(message, CreateOptions());
         }
 
         public void ShowError(string message)
         {
-            _notifier.ShowError(message, createOptions());
+            _notifier.ShowError(message, CreateOptions());
         }
 
         public void ShowCustomizedMessage(string message)
@@ -163,9 +173,38 @@ namespace ConfigurationExample
             }
         }
 
-        public bool? FreezeOnMouseEnter { get; set; } = true;
-        public bool? ShowCloseButton { get; set; } = false;
+        private bool _freezeOnMouseEnter;
+        public bool FreezeOnMouseEnter
+        {
+            get { return _freezeOnMouseEnter; }
+            set
+            {
+                _freezeOnMouseEnter = value;
+                OnPropertyChanged("FreezeOnMouseEnter");
+            }
+        }
 
+        private bool _unFreezeOnMouseEnter;
+        public bool UnFreezeOnMouseEnter
+        {
+            get { return _unFreezeOnMouseEnter; }
+            set
+            {
+                _unFreezeOnMouseEnter = value;
+                OnPropertyChanged("UnFreezeOnMouseEnter");
+            }
+        }
+
+        private bool _showCloseButton;
+        public bool ShowCloseButton
+        {
+            get { return _showCloseButton; }
+            set
+            {
+                _showCloseButton = value;
+                OnPropertyChanged("ShowCloseButton");
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

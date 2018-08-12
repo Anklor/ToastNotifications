@@ -15,12 +15,12 @@ namespace ToastNotifications.Messages.Error
             InitializeComponent();
 
             _viewModel = error;
-            DataContext = error;
+            Bind(_viewModel);
         }
 
         public override string GetMessage()
         {
-            return this._viewModel.Message;
+            return _viewModel.MessageText;
         }
         private void OnClose(object sender, RoutedEventArgs e)
         {
@@ -28,9 +28,6 @@ namespace ToastNotifications.Messages.Error
             _viewModel.Close();
         }
 
-        public override MessageOptions GetOptions()
-        {
-            return this._viewModel.Options;
-        }
+        public override IMessageOptions Options => this._viewModel.Options;
     }
 }

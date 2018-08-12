@@ -6,11 +6,11 @@ namespace ToastNotifications.Messages.Error
 {
     public class ErrorMessage : MessageBase<ErrorDisplayPart>
     {
-        public ErrorMessage(string message) : this(message, new MessageOptions())
+        public ErrorMessage(string messageText) : this(messageText, new MessageOptions())
         {
         }
 
-        public ErrorMessage(string message, MessageOptions options) : base(message, options)
+        public ErrorMessage(string messageText, IMessageOptions options) : base(messageText, options)
         {
         }
 
@@ -19,7 +19,7 @@ namespace ToastNotifications.Messages.Error
             return new ErrorDisplayPart(this);
         }
 
-        protected override void UpdateDisplayOptions(ErrorDisplayPart displayPart, MessageOptions options)
+        protected override void UpdateDisplayOptions(ErrorDisplayPart displayPart, IMessageOptions options)
         {
             if (options.FontSize != null)
                 displayPart.Text.FontSize = options.FontSize.Value;

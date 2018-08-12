@@ -6,11 +6,11 @@ namespace ToastNotifications.Messages.Success
 {
     public class SuccessMessage : MessageBase<SuccessDisplayPart>
     {
-        public SuccessMessage(string message) : this(message, new MessageOptions())
+        public SuccessMessage(string messageText) : this(messageText, new MessageOptions())
         {
         }
 
-        public SuccessMessage(string message, MessageOptions options) : base(message, options)
+        public SuccessMessage(string messageText, IMessageOptions options) : base(messageText, options)
         {
         }
 
@@ -19,7 +19,7 @@ namespace ToastNotifications.Messages.Success
             return new SuccessDisplayPart(this);
         }
 
-        protected override void UpdateDisplayOptions(SuccessDisplayPart displayPart, MessageOptions options)
+        protected override void UpdateDisplayOptions(SuccessDisplayPart displayPart, IMessageOptions options)
         {
             if (options.FontSize != null)
                 displayPart.Text.FontSize = options.FontSize.Value;
